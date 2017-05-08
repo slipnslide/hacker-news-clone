@@ -1,7 +1,7 @@
-<h1>Welcome to HackerNews!, HackerNews!</h1>
 <% if logged_in? %>
-Hello, <%= current_user.username %>
+<h3>Hello, <%= current_user.username %><h3>
 <% end %>
+<h1>Welcome to HackerNews!</h1>
 <% @post.each do |p|%>
-  <%= p.title %><br>
+  <h4><%= p.title %></h4>
   <% end %>

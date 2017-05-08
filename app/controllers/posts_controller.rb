@@ -13,7 +13,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find_by(id: params[:id])
+    if logged_in?
+      @post = Post.find_by(id: params[:id])
+    else
+      redirect_to "/sessions/new"
+    end
   end
 
   # POST /posts
