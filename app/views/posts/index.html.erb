@@ -1,16 +1,11 @@
 <h1>HackerNews Posts</h1>
 <% if @posts %>
   <% @posts.each do |post| %>
-    <h3><%= post.title %></h3>
+  <a href="/posts/<%= post.id %>"><h3><%= post.title %></h3></a><br>
     Created by:<%= post.user.username %> <br>
-    <% if current_user.id == post.user.id %>
     <form action="/posts/<%= post.id %>/edit" method="get">
     <input type="submit" value="Edit">
     </form>
-    <form  action="/posts/<%= post.id %>" method="post">
-      <input type="hidden" name="_method" value="destroy">
-      <input type="submit" value="Delete">
-    </form>
-    <% end %>
+    <%= link_to 'DELETE', post_path(post), :method => :delete, :confirm => "Are you sure?" %>
   <% end %>
 <% end %>

@@ -2,6 +2,12 @@
 <p>
   <strong><%= @user.username %>'s Posts:</strong><br>
   <% @user.posts.each do |p| %>
-    <%= p.title %><br>
+  <a href="/posts/<%= p.id %>"><%= p.title %></a><br>
+    <% if current_user.id == p.user.id %>
+    <form action="/posts/<%= p.id %>/edit" method="get">
+      <input type="submit" value="Edit">
+    </form>
+    <%= link_to 'DELETE', post_path(p), :method => :delete, :confirm => "Are you sure?" %>
     <% end %>
+  <% end %>
 </p>
