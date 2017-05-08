@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HackerNewsClone</title>
+    <title>SophiaPHackerNewsClone</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,15 +9,22 @@
   </head>
 
   <body>
-    <nav>
-      <% if logged_in? %>
-      		<%= link_to "Log out", session_path(current_user), method: :delete %>
-      		<%= link_to "Profile", user_path(current_user) %>
-      	<% else %>
-      		<%= link_to "Log In", new_session_path %>
-        		<%= link_to "Register", new_user_path %>
-      	<% end %>
-    </nav>
-    <%= yield %>
+
+	<% if logged_in? %>
+		<%= link_to "Log out", session_path(current_user), method: :delete %>
+		<%= link_to "Profile", user_path(current_user) %>
+	<% else %>
+		<%= link_to "Log In", new_session_path %>
+  		<%= link_to "Register", new_user_path %>
+	<% end %>
+
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    
+     
+    </div>
   </body>
 </html>
