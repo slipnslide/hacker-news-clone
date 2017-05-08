@@ -4,5 +4,6 @@ class User < ApplicationRecord
 	validates :password, length:{minimum:6}
 	validates_confirmation_of :password
 	has_many :comments
+	has_many :posts
 
 end
