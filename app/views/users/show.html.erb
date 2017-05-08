@@ -1,6 +1,7 @@
 
 <p>
-  <strong>Username:</strong>
-  <%= @user.username %>
+  <strong><%= @user.username %>'s Posts:</strong><br>
+  <% @user.posts.each do |p| %>
+    <%= p.title %><br>
+    <% end %>
 </p>
- 

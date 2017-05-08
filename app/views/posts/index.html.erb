@@ -1,5 +1,6 @@
 <% if @posts %>
   <% @posts.each do |post| %>
-    <%= post.title %>
+    <%= post.title %><br>
+    <% = post.user %> <br>
   <% end %>
 <% end %>

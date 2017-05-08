@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
   def show
+    @post = Post.find_by(id: params[:id])
   end
 
   # GET /posts/new
@@ -12,12 +13,16 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find_by(id: params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @user = current_user
+
+    @post.update_attributes(user_id: @user.id)
 
     respond_to do |format|
       if @post.save
@@ -33,8 +38,10 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    @user = current_user
+    @post = Post.find_by(id: params[:id])
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update_attributes(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
