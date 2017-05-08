@@ -2,3 +2,6 @@
 <% if logged_in? %>
 Hello, <%= current_user.username %>
 <% end %>
+<% @post.each do |p|%>
+  <%= p.title %><br>
+  <% end %>
